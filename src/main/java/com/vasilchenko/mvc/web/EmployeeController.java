@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+
 @Controller
 public class EmployeeController {
 
@@ -44,7 +46,24 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employees/new", method = RequestMethod.POST)
-	public String saveEmployee(Employee employee, Model model) {
+	public String saveEmployee(@RequestParam("surname") String surname,
+							   @RequestParam("name") String name,
+							   @RequestParam("position") String position,
+							   @RequestParam("birth") String birth,
+							   @RequestParam("phone") String phone,
+							   @RequestParam("salary") String salary,
+							   Model model) {
+		Employee employee = new Employee();
+		employee.setSurname(surname);
+		employee.setName(name);
+		if (!position.isEmpty())
+			employee.setPosition(Position.valueOf(position));
+		if (!birth.isEmpty())
+			employee.setBirth(Date.valueOf(birth));
+		if (!phone.isEmpty())
+			employee.setPhone(phone);
+		if (!salary.isEmpty())
+			employee.setSalary(Float.parseFloat(salary));
 		employeeService.addNewEmployee(employee);
 		model.addAttribute("employee", employee);
 		model.addAttribute("positions", Position.values());

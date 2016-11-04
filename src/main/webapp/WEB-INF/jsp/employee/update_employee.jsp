@@ -8,14 +8,14 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<jsp:include page="/WEB-INF/jsp/components/header.jsp"/>
+<%--<jsp:include page="/WEB-INF/jsp/components/header.jsp"/>--%>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4">
             <span class="glyphicon glyphicon-globe logo slideanim"></span>
             <img src="/static/images/employee/${employee.surname}.jpg"
-                 onerror="if (this.src != '/static/images/employee/default.jpg') this.src = '/static/images/employee/default.jpg';"
+                 onerror="if (this.src != '/static/images/default.jpg') this.src = '/static/images/default.jpg';"
                  alt="NO IMAGE">
         </div>
         <div class="col-sm-8">

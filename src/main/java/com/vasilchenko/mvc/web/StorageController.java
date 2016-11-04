@@ -46,7 +46,13 @@ public class StorageController {
 	}
 
 	@RequestMapping(value = "/ingredient/new", method = RequestMethod.POST)
-	public String saveEmployee(Storage storage, Model model) {
+	public String saveEmployee(@RequestParam("name") String name,
+							   @RequestParam("quantity") String quantity,
+							   Model model) {
+		Storage storage = new Storage();
+		storage.setIngredientName(name);
+		if(!quantity.isEmpty())
+			storage.setQuantity(Long.parseLong(quantity));
 		storageService.addNewIngredient(storage);
 		model.addAttribute("storage", storage);
 		model.addAttribute("flag", "add");

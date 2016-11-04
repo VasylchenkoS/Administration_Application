@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -64,19 +63,14 @@ public class MenuController {
 	@RequestMapping(value = "/menus/add", method = RequestMethod.GET)
 	public String addMenu(Model model) {
 		model.addAttribute("menu", new Menu());
-		model.addAttribute("all_dishes", dishService.getAllDish());
 		return "menu/add_menu";
 	}
 
 	@RequestMapping(value = "/menus/new", method = RequestMethod.POST)
-	public String saveMenu(@RequestParam("dishSet") String name,
-						   @RequestParam("menuName") String menuName,
+	public String saveMenu(@RequestParam("menuName") String menuName,
 						   Model model) {
 		Menu menu = new Menu();
 		menu.setMenuName(menuName);
-		Set<Dish> dishSet = new HashSet<>();
-		dishSet.add(dishService.findDishByName(name));
-		menu.setDishSet(dishSet);
 		menuService.addNewMenu(menu);
 		model.addAttribute("menu", menu);
 		model.addAttribute("all_dishes", dishService.getAllDish());

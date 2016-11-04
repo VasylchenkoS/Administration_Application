@@ -88,12 +88,17 @@ public class DishController {
 						   Model model) {
 		Dish dish = new Dish();
 		dish.setName(name);
-		dish.setCategory(DishCategory.valueOf(category));
-		Set<Storage> dishSet = new HashSet<>();
-		dishSet.add(storageService.findByName(ingredient));
-		dish.setIngredients(dishSet);
-		dish.setPrice(Double.parseDouble(price));
-		dish.setWeight(Double.parseDouble(weigth));
+		if (!category.isEmpty())
+			dish.setCategory(DishCategory.valueOf(category));
+		if (!ingredient.isEmpty()) {
+			Set<Storage> dishSet = new HashSet<>();
+			dishSet.add(storageService.findByName(ingredient));
+			dish.setIngredients(dishSet);
+		}
+		if (!price.isEmpty())
+			dish.setPrice(Double.parseDouble(price));
+		if (!weigth.isEmpty())
+			dish.setWeight(Double.parseDouble(weigth));
 		dishService.addNewDish(dish);
 		model.addAttribute("dish", dish);
 		model.addAttribute("all_ingredients", storageService.getAllIngredient());

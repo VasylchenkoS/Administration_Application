@@ -8,7 +8,7 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<jsp:include page="/WEB-INF/jsp/components/header.jsp"/>
+<%--<jsp:include page="/WEB-INF/jsp/components/header.jsp"/>--%>
 
 <div class="container-fluid">
     <div class="row">
@@ -25,14 +25,7 @@
                     <br>
                     <br>
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="menuName" placeholder="Name"/>
-                    <label for="dishes">Dishes</label>
-                    <select class="form-control" id="dishes" name="dishSet">
-                        <option value="0">--SELECT--</option>
-                        <c:forEach items="${all_dishes}" var="dishes">
-                            <option value="${dishes.name}">${dishes.name}</option>
-                        </c:forEach>
-                    </select>
+                    <input type="text" class="form-control" id="name" name="menuName" placeholder="Name" required/>
                     <input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" />
                     <br>
                     <div class="col-sm-4">
@@ -51,35 +44,6 @@
 </div>
 
 <jsp:include page="../components/date_formater.jsp"/>
-
-<script type="text/javascript">
-    function validate()
-    {
-//        var surname = document.getElementById("surname");
-//        var name = document.getElementById("name");
-//        var birth = document.getElementById("birth");
-//        var phone = document.getElementById("phone");
-//        var valid = true;
-//
-//        if ((surname.value.length == 0)|| (name.value.length == 0)) {
-//            alert("Name or Surname fields can't be empty");
-//            return false;
-//        }
-//        else if ((surname.value.toString().search([0-9]) != -1)|| (name.value.toString().search([0-9]) != -1)) {
-//            alert("Name or Surname has numbers");
-//            return false;
-//        }
-//        if(phone.value.length == 0){
-//            phone.value = '000-00-00';
-//        }
-//        if(birth.value.length == 0){
-//            var date = new Date("1970-01-01");
-//            birth.value = dateFormat(date, "yyyy-mm-dd")
-//        }
-        return valid;
-    }
-</script>
-
 <jsp:include page="../components/footer.jsp"/>
 </body>
 </html>

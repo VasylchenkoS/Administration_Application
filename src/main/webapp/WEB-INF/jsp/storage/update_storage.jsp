@@ -25,7 +25,7 @@
                     <form:label path="id">ID:${storage.id}, </form:label> <label>${storage.ingredientName}</label>
                     <br>
                     <label for="name">Name</label>
-                    <form:textarea type="text" class="form-control" id="name" value="${storage.ingredientName}" path="ingredientName" cssStyle="align-self: auto"/>
+                    <form:input type="text" class="form-control" id="name" value="${storage.ingredientName}" path="ingredientName" cssStyle="align-self: auto"/>
                     <label for="quantity">Quantity</label>
                     <form:input type="text" class="form-control" id="quantity" value="${storage.quantity}" path="quantity"/>
                     <input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" />

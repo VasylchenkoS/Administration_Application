@@ -54,6 +54,7 @@
     <br>
     <h1 align="center">Deleting success!</h1>
     </c:if>
+    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
     <div class="container-fluid">
         <div class="col-sm-8"></div>
         <div class="col-sm-2"></div>
@@ -63,6 +64,7 @@
             </form>
         </div>
     </div>
+    </c:if>
     <jsp:include page="../components/sortscript.jsp"/>
     <jsp:include page="../components/footer.jsp"/>
 </body>

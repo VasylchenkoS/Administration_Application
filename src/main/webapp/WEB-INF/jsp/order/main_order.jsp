@@ -5,6 +5,8 @@
 <head>
     <title>Orders</title>
     <jsp:include page="../components/links.jsp"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/date/tcal.css"/>" />
+    <script type="text/javascript" src="<c:url value="/static/date/tcal_en.js"/>"></script>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -13,6 +15,13 @@
 <div class="jumbotron text-center">
     <jsp:include page="../components/body_header.jsp"/>
 </div>
+<c:choose>
+<c:when test="${orders == null}">
+    <div id="about" class="container-fluid bg-grey">
+        <h3>Sorry, we don't find any data</h3>
+    </div>
+</c:when>
+<c:otherwise>
 <div id="about" class="container-fluid bg-grey">
     <div>
         <table id="table" class="sortable" align="center">
@@ -50,33 +59,28 @@
     </div>
     <br>
     <div class="container-fluid">
-        <form class="form-inline" action="${pageContext.request.contextPath}/ingredient/filter" method="get">
-            <div class="col-sm-2">
-                <input type="text" class="form-control" name="filterDate" placeholder="Input start date">
-            </div>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" name="filterDate" placeholder="Input end date">
-            </div>
-            <div class="col-sm-2">
+        <form class="form-inline" action="${pageContext.request.contextPath}/orders/filter" method="get">
+            <div class="col-sm-6">
+                <input type="text" class="form-control tcal" name="filterDateStart" placeholder="Input start date">
+                <input type="text" class="form-control tcal" name="filterDateEnd" placeholder="Input end date">
                 <input type="text" class="form-control" name="filterWaiter" placeholder="Input waiter name">
-            </div>
-            <div class="col-sm-2">
                 <input type="text" class="form-control" name="filterTable" placeholder="Input table №">
             </div>
             <div class="col-sm-2">
                 <input type="submit" class="btn btn-block btn-primary btn-default" value="Filter">
             </div>
             <div class="col-sm-2">
-                <button type="reset" class="btn btn-block btn-primary btn-default">Clear</button>
+                <button type="reset" class="btn btn-block btn-primary btn-default">Clear input data</button>
             </div>
-            <div class="col-sm-6"></div>
         </form>
+        </c:otherwise>
+        </c:choose>
         <br>
         <br>
         <div class="col-sm-6"></div>
         <div class="col-sm-4"></div>
         <div class="col-sm-2">
-            <input type="button" class="btn btn-block btn-primary btn-default" value="Back" onclick="location.href='/orders'">
+            <input type="button" class="btn btn-block btn-primary btn-default" value="Clear filters" onclick="location.href='/orders'">
         </div>
     </div>
     <jsp:include page="../components/sortscript.jsp"/>

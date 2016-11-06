@@ -15,12 +15,12 @@
                 form.name.focus() ;
                 return false;
             }
-            if (isNaN(parseFloat(form.price.value)) && form.price.value != ""){
-                alert("Price field must be number");
+            if (isNaN(parseFloat(form.price.value)) & !(parseFloat(form.price.value) < 0) && form.price.value != ""){
+                alert("Price field must be number > 0");
                 return false;
             }
-            if (isNaN(parseFloat(form.weigth.value)) && form.weigth.value != ""){
-                alert("Weigth field must be number");
+            if (isNaN(parseFloat(form.weigth.value)) & !(parseFloat(form.weigth.value) < 0) && form.weigth.value != ""){
+                alert("Weigth field must be number > 0");
                 return false;
             }
             return true;
@@ -44,7 +44,7 @@
 
         <div class="col-sm-8">
             <div class="jumbotron form-group">
-                <form action="${pageContext.request.contextPath}/dishs/new" id="myForm" name="dishForm" method="post" onsubmit='return dishValidate()'>
+                <form action="${pageContext.request.contextPath}/dishes/new" id="myForm" name="dishForm" method="post" onsubmit='return dishValidate()'>
                     <label><h2>Please, enter data for new Menu</h2></label>
                     <br>
                     <br>
@@ -74,7 +74,7 @@
                         <input type="submit" class="btn btn-block btn-primary btn-default" value="Append">
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-block btn-primary btn-default" name="button-redirect" onclick="location.href='/dishs'">Cancel</button>
+                        <button type="button" class="btn btn-block btn-primary btn-default" name="button-redirect" onclick="location.href='/dishes'">Cancel</button>
                     </div>
                     <div class="col-sm-4">
                         <button type="reset" class="btn btn-block btn-primary btn-default" >Clear</button>

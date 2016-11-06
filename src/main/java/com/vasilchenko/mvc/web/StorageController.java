@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -32,9 +33,14 @@ public class StorageController {
 	}
 
 	@RequestMapping(value = "/ingredient/{id}/update", method = RequestMethod.POST)
-	public String updateEmployeePage(Storage storage, @PathVariable("id") String id, Model model) {
-		storageService.updateIngredient(storage);
-		model.addAttribute("storage", storageService.findById(Integer.parseInt(id)));
+	public String updateEmployeePage	(@RequestParam("name") String name,
+									 @RequestParam("quantity") String quantity,
+									 @PathVariable("id") String id, Model model) {
+		Storage byId = storageService.findById(Integer.parseInt(id));
+		if (!Objects.equals(name, "")) byId.setIngredientName(name);
+		if (!Objects.equals(quantity, "")) byId.setQuantity(Long.parseLong(quantity));
+		storageService.updateIngredient(byId);
+		model.addAttribute("storage", byId);
 		model.addAttribute("flag", "modify");
 		return "storage/update_storage";
 	}

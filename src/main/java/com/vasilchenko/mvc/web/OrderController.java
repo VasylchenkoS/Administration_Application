@@ -38,16 +38,13 @@ public class OrderController {
 			dateStart = new Date(new java.util.Date(filterDateStart).getTime());
 		if(!filterDateEnd.isEmpty())
 			dateEnd = new Date(new java.util.Date(filterDateEnd).getTime());
-		if (dateStart == null & dateEnd == null) {
-			final Date finalDateStart = dateStart;
-			final Date finalDateEnd = dateEnd;
-			result = orderingList.stream().filter(order -> (order.getDate().after(finalDateStart) & order.getDate().before(finalDateEnd))).collect(Collectors.toList());
-		} else if (dateStart != null){
+		if (dateStart != null){
 			final Date finalDateStart = dateStart;
 			result = orderingList.stream().filter(order -> (order.getDate().after(finalDateStart))).collect(Collectors.toList());
-		} else if (dateEnd != null){
+		}
+		if (dateEnd != null){
 			final Date finalDateEnd = dateEnd;
-			result = orderingList.stream().filter(order -> (order.getDate().after(finalDateEnd))).collect(Collectors.toList());
+			result = orderingList.stream().filter(order -> (order.getDate().before(finalDateEnd))).collect(Collectors.toList());
 		}
 		if (!filterWaiter.isEmpty())
 			result = orderingList.stream().filter(order -> order.getEmployee().getName().toLowerCase().contains(filterWaiter)).collect(Collectors.toList());

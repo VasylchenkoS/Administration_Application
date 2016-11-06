@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,11 +47,10 @@ public class MenuController {
 		Menu menu = new Menu();
 		menu.setMenuName(menuName);
 		menu.setId(Integer.parseInt(id));
-		if (!dishAdd1.isEmpty()) {
-			set.add(dishAdd1);
-			set.add(dishAdd2);
-		}
-		if (!deleteDish.isEmpty()) set.remove(deleteDish);
+		if (!Objects.equals(dishAdd1, "")) set.add(dishAdd1);
+		if (!Objects.equals(dishAdd2, "")) set.add(dishAdd2);
+		if (!Objects.equals(deleteDish, "")) set.remove(deleteDish);
+		set.removeIf(String::isEmpty);
 		Set<Dish> dishSet = set.stream().map(s -> dishService.findDishByName(s)).collect(Collectors.toSet());
 		menu.setDishSet(dishSet);
 		model.addAttribute("menu", menu);

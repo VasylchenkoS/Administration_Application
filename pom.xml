@@ -30,6 +30,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <outputDirectory>./</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
@@ -43,13 +45,13 @@
                     <version>2.4</version>
                     <configuration>
                         <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                        <warName>client-application</warName>
+                        <warName>administration-application</warName>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <finalName>client-application</finalName>
+        <finalName>administration-application</finalName>
 
     </build>
     <dependencies>

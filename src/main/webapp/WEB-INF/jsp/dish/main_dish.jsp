@@ -45,9 +45,9 @@
                 <td>${current_dish.price}</td>
                 <td>${current_dish.weight}</td>
                 <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
-                    <td><a href="/dishs/edit/${current_dish.id}">Edit dish</a></td>
+                    <td><a href="/dishes/edit/${current_dish.id}">Edit dish</a></td>
                     <td>
-                        <a href="/dishs/remove/${current_dish.id}" onclick="return confirm('Вы собираетель удалить персонал.\nВы уверены в этом?')">Delete dish</a>
+                        <a href="/dishes/remove/${current_dish.id}" onclick="return confirm('Вы собираетель удалить блюдо.\nВы уверены в этом?')">Delete dish</a>
                     </td>
                 </c:if>
             </tr>
@@ -63,7 +63,7 @@
         <div class="col-sm-8"></div>
         <div class="col-sm-2"></div>
         <div class="col-sm-2">
-            <form class="form-inline" action="${pageContext.request.contextPath}/dishs/add">
+            <form class="form-inline" action="${pageContext.request.contextPath}/dishes/add">
                 <input type="submit" class="btn btn-block btn-primary btn-default" value="Add new Dish">
             </form>
         </div>

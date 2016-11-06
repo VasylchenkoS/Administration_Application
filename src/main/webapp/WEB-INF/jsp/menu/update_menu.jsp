@@ -4,16 +4,32 @@
 
 <script>
     function change() {
-    var selectBox = document.getElementById("select1");
-    var selected = selectBox.options[selectBox.selectedIndex].value;
+        var selectBox = document.getElementById("select1");
+        var selected = selectBox.options[selectBox.selectedIndex].value;
 
-    if(selected === '0'){
-        $('#select2').hide();
+        if(selected === '0'){
+            $('#select2').hide();
+        }
+        else{
+            $('#select2').show();
+        }
     }
-    else{
-        $('#select2').show();
+
+    function menuValid() {
+        var option = true;
+
+        $("#dishSet option").each(function(){
+           if($(this).val() == $("#select1").val()){
+               alert("Menu already include " + $(this).val() + ". Please select other dish");
+               option = false;
+           } else if ($(this).val() == $("#select2").val()){
+               alert("Menu already include " + $(this).val() + ". Please select other dish");
+               option = false;
+           }
+        });
+        return option;
     }
-}</script>
+</script>
 
 <html>
 <head>
@@ -34,14 +50,14 @@
         </div>
         <div class="col-sm-8">
             <div class="jumbotron form-group">
-                <form action="${pageContext.request.contextPath}/menus/${menu.id}/update" method="post">
+                <form action="${pageContext.request.contextPath}/menus/${menu.id}/update" method="post" name="menuForm" onsubmit="return menuValid()">
                     <label>ID: ${menu.id}, Name: ${menu.menuName}</label>
                     <br>
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" value="${menu.menuName}" name="menuNameFromInput"/>
-                    <label for="dishes">Dishes</label>
+                    <label for="dishSet">Dishes</label>
                     <c:forEach items="${menu.dishSet}" var="dish">
-                        <select class="form-control" id="dishes" name="dishSet">
+                        <select class="form-control" id="dishSet" name="dishSet">
                             <option selected value="${dish.name}">${dish.name}</option>
                         </select>
                     </c:forEach>

@@ -9,7 +9,11 @@
         function ingrValidate() {
             var form = document.ingr_form;
             if (isNaN(parseFloat(form.quantity.value)) && form.quantity.value != ""){
-                alert("Quantity field must be number");
+                alert("Quantity field must be number > 0");
+                return false;
+            }
+            if (parseFloat(form.quantity.value) < 0){
+                alert("Quantity field must be number > 0");
                 return false;
             }
             return true;
@@ -45,7 +49,7 @@
                         <input type="submit" class="btn btn-block btn-primary btn-default" value="Append">
                     </div>
                     <div class="col-sm-4">
-                        <button type="submit" class="btn btn-block btn-primary btn-default" name="button-redirect" onclick="location.href='/menus'">Cancel</button>
+                        <button type="button" class="btn btn-block btn-primary btn-default" name="button-redirect" onclick="location.href='/menus'">Cancel</button>
                     </div>
                     <div class="col-sm-4">
                         <button type="reset" class="btn btn-block btn-primary btn-default" >Clear</button>

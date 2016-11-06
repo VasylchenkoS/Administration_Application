@@ -21,7 +21,7 @@
             <h2 align="center"><span class="glyphicon glyphicon-glass"></span>
                 <a href="${pageContext.request.contextPath}/menus"> MENU</a></h2>
             <h2 align="center"><span class="glyphicon glyphicon-cutlery"></span>
-                <a href="${pageContext.request.contextPath}/dishs"> DISHES</a></h2>
+                <a href="${pageContext.request.contextPath}/dishes"> DISHES</a></h2>
             <h2 align="center"><span class="glyphicon glyphicon-user"></span>
                 <a href="${pageContext.request.contextPath}/employees"> EMPLOYEE</a></h2>
         </div>

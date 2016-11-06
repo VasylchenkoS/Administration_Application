@@ -70,7 +70,7 @@
                 <input type="submit" class="btn btn-block btn-primary btn-default" value="Filter">
             </div>
             <div class="col-sm-2">
-                <button type="reset" class="btn btn-block btn-primary btn-default">Clear input data</button>
+                <button type="reset" class="btn btn-block btn-primary btn-default">Clear filters</button>
             </div>
         </form>
         </c:otherwise>
@@ -80,7 +80,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-4"></div>
         <div class="col-sm-2">
-            <input type="button" class="btn btn-block btn-primary btn-default" value="Clear filters" onclick="location.href='/orders'">
+            <input type="button" class="btn btn-block btn-primary btn-default" value="Back" onclick="location.href='/orders'">
         </div>
     </div>
     <jsp:include page="../components/sortscript.jsp"/>

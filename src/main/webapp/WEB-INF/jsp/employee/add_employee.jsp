@@ -9,8 +9,8 @@
         function employeeValidate() {
             var form = document.employeeForm;
 
-            if (isNaN(parseFloat(form.salary.value)) && form.salary.value != ""){
-                alert("Salary field must be number");
+            if (isNaN(parseFloat(form.salary.value)) & parseFloat(form.salary.value) < 0 && form.salary.value != ""){
+                alert("Salary field must be number  > 0");
                 return false;
             }
 

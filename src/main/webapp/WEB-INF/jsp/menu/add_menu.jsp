@@ -20,7 +20,7 @@
 
         <div class="col-sm-8">
             <div class="jumbotron form-group">
-                <form action="${pageContext.request.contextPath}/menus/new" method="post" onsubmit="return validate();">
+                <form action="${pageContext.request.contextPath}/menus/new" method="post">
                     <label><h2>Please, enter data for new Menu</h2></label>
                     <br>
                     <br>

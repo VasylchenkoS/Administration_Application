@@ -37,10 +37,6 @@ public class MenuService {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	public Menu getMenuByName(String menuName) {
-		return menuDAO.findByName(menuName);
-	}
-	@PreAuthorize("hasRole('ADMIN')")
 	public Menu getMenuById(int id) {
 		return menuDAO.getMenuById(id);
 	}

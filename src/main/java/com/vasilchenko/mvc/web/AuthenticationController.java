@@ -21,30 +21,9 @@ public class AuthenticationController {
 	EmployeeService employeeService;
 
     @RequestMapping(value = { "/"}, method = RequestMethod.GET)
-		public String listAllUsers() {
+		public String main() {
 		return "main";
 	}
-//
-//    @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.GET)
-//    public String editUser(@PathVariable int id, ModelMap model) {
-//        User user  = service.findById(id);
-//        model.addAttribute("user", user);
-//        model.addAttribute("edit", true);
-//        return "registration";
-//    }
-//
-//    @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.POST)
-//    public String updateUser(User user, ModelMap model, @PathVariable int id) {
-//        service.updateUser(user);
-//        model.addAttribute("success", "User " + user.getFirstName()  + " updated successfully");
-//        return "success";
-//    }
-//
-//    @RequestMapping(value = { "/delete-user-{id}" }, method = RequestMethod.GET)
-//    public String deleteUser(@PathVariable int id) {
-//        service.deleteUser(id);
-//        return "redirect:/list";
-//    }
     
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
@@ -65,7 +44,7 @@ public class AuthenticationController {
 	}
 
 	private String getPrincipal(){
-		String userName = null;
+		String userName;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) userName = ((UserDetails) principal).getUsername();
 		else userName = principal.toString();

@@ -4,16 +4,50 @@
 
 <script>
     function change() {
-    var selectBox = document.getElementById("select1");
-    var selected = selectBox.options[selectBox.selectedIndex].value;
+        var selectBox = document.getElementById("select1");
+        var selected = selectBox.options[selectBox.selectedIndex].value;
 
-    if(selected === '0'){
-        $('#select2').hide();
+        if(selected === '0'){
+            $('#select2').hide();
+        }
+        else{
+            $('#select2').show();
+        }
     }
-    else{
-        $('#select2').show();
+
+    function dishValidate() {
+        var form = document.dishForm;
+
+        if (form.name.value == "") {
+            alert("Name fields can't be empty");
+            form.name.focus() ;
+            return false;
+        }
+        if (isNaN(parseFloat(form.price.value)) & !(parseFloat(form.price.value) < 0) && form.price.value != ""){
+            alert("Price field must be number > 0");
+            return false;
+        }
+        if (isNaN(parseFloat(form.weigth.value)) & !(parseFloat(form.weigth.value) < 0) && form.weigth.value != ""){
+            alert("Weigth field must be number > 0");
+            return false;
+        }
+
+        var option = true;
+
+        $("#ingredientSet option").each(function(){
+            if($(this).val() == $("#select1").val()){
+                alert("Dish already include " + $(this).val() + ". Please select other ingredient");
+                option = false;
+            } else if ($(this).val() == $("#select2").val()){
+                alert("Dish already include " + $(this).val() + ". Please select other ingredient");
+                option = false;
+            }
+        });
+
+        return option;
     }
-}</script>
+
+</script>
 
 <html>
 <head>
@@ -34,7 +68,7 @@
         </div>
         <div class="col-sm-8">
             <div class="jumbotron form-group">
-                <form action="${pageContext.request.contextPath}/dishs/${dish.id}/update" method="post">
+                <form action="${pageContext.request.contextPath}/dishes/${dish.id}/update" method="post" name="dishForm" onsubmit="return dishValidate()">
                     <label>ID: ${dish.id}, Name: ${dish.name}</label>
                     <br>
                     <label for="name">Name</label>
@@ -46,9 +80,9 @@
                             <option value="${cat.name()}">${cat.name()}</option>
                         </c:forEach>
                     </select>
-                    <label for="dishes">Ingredients</label>
+                    <label for="ingredientSet">Ingredients</label>
                     <c:forEach items="${dish.ingredients}" var="dishes">
-                        <select class="form-control" id="dishes" name="ingredientSet">
+                        <select class="form-control" id="ingredientSet" name="ingredientSet">
                             <option selected value="${dishes.ingredientName}">${dishes.ingredientName}</option>
                         </select>
                     </c:forEach>
@@ -56,7 +90,7 @@
                     <input type="text" class="form-control" id="price" name="price" value="${dish.price}"/>
                     <label for="weigth">Weigth</label>
                     <input type="text" class="form-control" id="weigth" name="weigth" value="${dish.weight}"/>
-                    <label id="select" for="select1" style="display: none">Select Dish to add:</label>
+                    <label id="select" for="select1" style="display: none">Select Ingredients to add:</label>
                     <select class="form-control" id="select1" name="addIngr1" style="display: none" onchange="change()">
                         <option value="0">---SELECT---</option>
                         <c:forEach items="${all_ingredients}" var="dishes">
@@ -83,15 +117,15 @@
                     </div>
                     <div class="col-sm-3">
                         <button type="button" class="btn btn-block btn-primary btn-default"
-                                name="button-redirect" onclick="location.href='/dishs'">Back</button>
+                                name="button-redirect" onclick="location.href='/dishes'">Back</button>
                     </div>
                     <div class="col-sm-3">
                         <button type="button" class="btn btn-block btn-primary btn-default"
-                                name="button-delete" onclick="$('#select').show();$('#select1').show();">Add Dish</button>
+                                name="button-delete" onclick="$('#select').show();$('#select1').show();">Add Ingredients</button>
                     </div>
                     <div class="col-sm-3">
                         <button type="button" class="btn btn-block btn-primary btn-default"
-                                name="button-delete" onclick="$('#delete').show();$('#delete1').show();">Delete Dish</button>
+                                name="button-delete" onclick="$('#delete').show();$('#delete1').show();">Delete Ingredient</button>
                     </div>
                     <c:if test="${flag == 'modify'}">
                         <br>

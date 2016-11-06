@@ -6,6 +6,20 @@
 <head>
     <title> ${storage.ingredientName}</title>
     <jsp:include page="/WEB-INF/jsp/components/links.jsp"/>
+    <script type="text/javascript">
+        function ingrValidate() {
+            var form = document.ingr_form;
+            if (isNaN(parseFloat(form.quantity.value)) && form.quantity.value != ""){
+                alert("Quantity field must be number > 0");
+                return false;
+            }
+            if (parseFloat(form.quantity.value) < 0){
+                alert("Quantity field must be number > 0");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -21,13 +35,13 @@
         </div>
         <div class="col-sm-8">
             <div class="jumbotron form-group">
-                <form:form action="${pageContext.request.contextPath}/ingredient/${storage.id}/update" method="post" modelAttribute="storage">
-                    <form:label path="id">ID:${storage.id}, </form:label> <label>${storage.ingredientName}</label>
+                <form action="${pageContext.request.contextPath}/ingredient/${storage.id}/update" method="post" name="ingr_form" id="ingr_form" onsubmit="return ingrValidate()">
+                    <label>ID:${storage.id}, </label> <label>${storage.ingredientName}</label>
                     <br>
                     <label for="name">Name</label>
-                    <form:input type="text" class="form-control" id="name" value="${storage.ingredientName}" path="ingredientName" cssStyle="align-self: auto"/>
+                    <input type="text" class="form-control" id="name" value="${storage.ingredientName}" name="name" style="align-self: auto" required/>
                     <label for="quantity">Quantity</label>
-                    <form:input type="text" class="form-control" id="quantity" value="${storage.quantity}" path="quantity"/>
+                    <input type="text" class="form-control" id="quantity" value="${storage.quantity}" name="quantity"/>
                     <input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" />
                     <br>
                     <div class="col-sm-3">
@@ -45,7 +59,7 @@
                         <br>
                         <h1 align="center">Adding success!</h1>
                     </c:if>
-                </form:form>
+                </form>
             </div>
         </div>
     </div>

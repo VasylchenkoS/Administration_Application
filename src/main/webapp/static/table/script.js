@@ -50,7 +50,12 @@ TINY.table=function(){
 		if(this.currentid&&this.limitid){T$(this.limitid).innerHTML=this.d}
 	};
 	sorter.prototype.pages=function(){this.d=Math.ceil(this.l/this.pagesize)};
-	function ge(e){var t=T$(e); t.b=T$$('tbody',t)[0]; t.r=t.b.rows; return t};
+	function ge(e) {
+		var t = T$(e);
+		t.b = T$$('tbody', t)[0];
+		t.r = t.b.rows;
+		return t
+	}
 	function cp(f,c){
 		var g,h; f=g=f.v.toLowerCase(), c=h=c.v.toLowerCase();
 		var i=parseFloat(f.replace(/(\$|\,)/g,'')), n=parseFloat(c.replace(/(\$|\,)/g,''));
@@ -58,6 +63,6 @@ TINY.table=function(){
 		i=Date.parse(f); n=Date.parse(c);
 		if(!isNaN(i)&&!isNaN(n)){g=i; h=n}
 		return g>h?1:(g<h?-1:0)
-	};
+	}
 	return{sorter:sorter}
 }();

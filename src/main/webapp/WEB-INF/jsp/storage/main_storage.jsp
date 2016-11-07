@@ -11,7 +11,7 @@
 <jsp:include page="../components/header.jsp"/>
 
 <div class="jumbotron text-center">
-    <jsp:include page="../components/body_header.jsp"/>
+    <%--<jsp:include page="../components/body_header.jsp"/>--%>
 </div>
 <div id="about" class="container-fluid bg-grey">
     <div class="col-sm-2"></div>

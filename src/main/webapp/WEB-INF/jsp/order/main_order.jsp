@@ -13,7 +13,7 @@
 <jsp:include page="../components/header.jsp"/>
 
 <div class="jumbotron text-center">
-    <jsp:include page="../components/body_header.jsp"/>
+    <%--<jsp:include page="../components/body_header.jsp"/>--%>
 </div>
 <c:choose>
 <c:when test="${orders == null}">
@@ -70,17 +70,12 @@
                 <input type="submit" class="btn btn-block btn-primary btn-default" value="Filter">
             </div>
             <div class="col-sm-2">
-                <button type="reset" class="btn btn-block btn-primary btn-default">Clear filters</button>
+                <input type="button" class="btn btn-block btn-primary btn-default" value="Clear" onclick="location.href='/orders'">
             </div>
         </form>
         </c:otherwise>
         </c:choose>
-        <br>
-        <br>
-        <div class="col-sm-6"></div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-2">
-            <input type="button" class="btn btn-block btn-primary btn-default" value="Back" onclick="location.href='/orders'">
+
         </div>
     </div>
     <jsp:include page="../components/sortscript.jsp"/>

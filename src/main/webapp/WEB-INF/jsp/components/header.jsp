@@ -12,7 +12,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/login" class="navbar-brand">
                     ${pageContext.request.userPrincipal.name != null ? pageContext.request.userPrincipal.name.toUpperCase() : "LOGIN"}</a></li>
-                <%--<li><a href="${pageContext.request.contextPath}/login">LOGIN</a></li>--%>
                 <li><a href="${pageContext.request.contextPath}/logout" class="navbar-brand">LOGOUT</a></li>
             </ul>
         </div>

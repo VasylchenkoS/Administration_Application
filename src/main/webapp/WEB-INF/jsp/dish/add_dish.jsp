@@ -15,11 +15,19 @@
                 form.name.focus() ;
                 return false;
             }
-            if (isNaN(parseFloat(form.price.value)) & !(parseFloat(form.price.value) < 0) && form.price.value != ""){
+            if (isNaN(parseFloat(form.price.value)) && form.price.value != ""){
                 alert("Price field must be number > 0");
                 return false;
             }
-            if (isNaN(parseFloat(form.weigth.value)) & !(parseFloat(form.weigth.value) < 0) && form.weigth.value != ""){
+            if (parseFloat(form.price.value) < 0){
+                alert("Price field must be number > 0");
+                return false;
+            }
+            if (isNaN(parseFloat(form.weigth.value)) && form.weigth.value != ""){
+                alert("Weigth field must be number > 0");
+                return false;
+            }
+            if (parseFloat(form.weigth.value) < 0){
                 alert("Weigth field must be number > 0");
                 return false;
             }

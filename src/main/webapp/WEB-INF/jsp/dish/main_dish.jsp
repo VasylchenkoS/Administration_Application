@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <jsp:include page="../components/header.jsp"/>
 
 <div class="jumbotron text-center">
-    <jsp:include page="../components/body_header.jsp"/>
+    <%--<jsp:include page="../components/body_header.jsp"/>--%>
 </div>
 <div id="about" class="container-fluid bg-grey">
     <table id="table" class="sortable" align="center">
@@ -43,7 +43,7 @@
                     </c:forEach>
                 </td>
                 <td>${current_dish.price}</td>
-                <td>${current_dish.weight}</td>
+                <td><fmt:formatNumber value="${current_dish.weight}" maxIntegerDigits="2"/></td>
                 <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
                     <td><a href="/dishes/edit/${current_dish.id}">Edit dish</a></td>
                     <td>

@@ -23,7 +23,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="content">
         <!-----start-logo--------->
         <div class="logo">
-            <h1><a href="#"><img src="<c:url value="/static/images/error/logo.png"/>"/></a></h1>
             <span><img src="<c:url value="/static/images/error/signal.png"/>"/>
                 Message:
                     <%=exception.getMessage()%>

@@ -23,7 +23,7 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<jsp:include page="/WEB-INF/jsp/components/header.jsp"/>
+<%--<jsp:include page="/WEB-INF/jsp/components/header.jsp"/>--%>
 
 <div class="container-fluid">
     <div class="row">

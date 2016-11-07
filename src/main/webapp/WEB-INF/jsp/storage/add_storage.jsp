@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add new Storage</title>
+    <title>Add new Ingredient</title>
     <jsp:include page="/WEB-INF/jsp/components/links.jsp"/>
     <script type="text/javascript">
         function ingrValidate() {

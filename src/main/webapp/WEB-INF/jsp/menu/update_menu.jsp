@@ -56,27 +56,27 @@
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" value="${menu.menuName}" name="menuNameFromInput"/>
                     <label for="dishSet">Dishes</label>
-                    <c:forEach items="${menu.dishSet}" var="dish">
-                        <select class="form-control" id="dishSet" name="dishSet">
-                            <option selected value="${dish.name}">${dish.name}</option>
-                        </select>
-                    </c:forEach>
+                        <c:forEach items="${menu.dishSet}" var="dish">
+                            <select class="form-control" id="dishSet" name="dishSet">
+                                <option selected value="${dish.name}">${dish.name}</option>
+                            </select>
+                        </c:forEach>
                     <label id="select" for="select1" style="display: none">Select Dish to add:</label>
                     <select class="form-control" id="select1" name="dishAdd1" style="display: none" onchange="change()">
-                        <option value="0">---SELECT---</option>
+                        <option value="">---SELECT---</option>
                         <c:forEach items="${all_dishes}" var="dishes">
                             <option value="${dishes.name}">${dishes.name}</option>
                         </c:forEach>
                     </select>
                     <select class="form-control" id="select2" name="dishAdd2" style="display: none" title="">
-                        <option>---SELECT---</option>
+                        <option value="">---SELECT---</option>
                         <c:forEach items="${all_dishes}" var="dishes2">
                             <option value="${dishes2.name}">${dishes2.name}</option>
                         </c:forEach>
                     </select>
                     <label id="delete" for="delete1" style="display: none">Select Dish to add:</label>
                     <select class="form-control" id="delete1" name="deleteDish" style="display: none">
-                        <option value="0">---SELECT---</option>
+                        <option value="">---SELECT---</option>
                         <c:forEach items="${menu.dishSet}" var="dishes">
                             <option value="${dishes.name}">${dishes.name}</option>
                         </c:forEach>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -47,6 +48,7 @@ public class MenuController {
 		Menu menu = new Menu();
 		menu.setMenuName(menuName);
 		menu.setId(Integer.parseInt(id));
+		if (set.isEmpty()) set = new HashSet<>();
 		if (!Objects.equals(dishAdd1, "")) set.add(dishAdd1);
 		if (!Objects.equals(dishAdd2, "")) set.add(dishAdd2);
 		if (!Objects.equals(deleteDish, "")) set.remove(deleteDish);
@@ -63,14 +65,19 @@ public class MenuController {
 	@RequestMapping(value = "/menus/add", method = RequestMethod.GET)
 	public String addMenu(Model model) {
 		model.addAttribute("menu", new Menu());
+		model.addAttribute("all_dishes", dishService.getAllDish());
+		model.addAttribute("all_menus", menuService.getAllMenu());
 		return "menu/add_menu";
 	}
 
 	@RequestMapping(value = "/menus/new", method = RequestMethod.POST)
 	public String saveMenu(@RequestParam("menuName") String menuName,
+						   @RequestParam("dishAdd1") Set<String> set,
 						   Model model) {
 		Menu menu = new Menu();
 		menu.setMenuName(menuName);
+		Set<Dish> dishSet = set.stream().map(s -> dishService.findDishByName(s)).collect(Collectors.toSet());
+		menu.setDishSet(dishSet);
 		menuService.addNewMenu(menu);
 		model.addAttribute("menu", menu);
 		model.addAttribute("all_dishes", dishService.getAllDish());

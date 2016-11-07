@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <script>
@@ -89,7 +90,7 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" id="price" name="price" value="${dish.price}"/>
                     <label for="weigth">Weigth</label>
-                    <input type="text" class="form-control" id="weigth" name="weigth" value="${dish.weight}"/>
+                    <input type="text" class="form-control" id="weigth" name="weigth" value="<fmt:formatNumber value="${dish.weight}" maxIntegerDigits="2"/>"/>
                     <label id="select" for="select1" style="display: none">Select Ingredients to add:</label>
                     <select class="form-control" id="select1" name="addIngr1" style="display: none" onchange="change()">
                         <option value="0">---SELECT---</option>
